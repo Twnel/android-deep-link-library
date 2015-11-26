@@ -13,11 +13,28 @@ Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
 ```
 ```groovy
  dependencies {
-        compile 'com.github.Twnel:android-deep-link-library:1.0'
+        compile 'com.github.Twnel:android-deep-link-library:1.1'
 	}
 ```
 #2 - Usa la clase TwnelDeepLink para realizar el enlace con Twnel Messenger
-
+```java
+ new TwnelDeepLink.Builder()
+                    .context(this)
+                    //The company identifier inside Twnel
+                    .companyId("twnelvipalerts")
+                     //A fully-qualified package name for intent generation (used to return to your app)
+                    .appPackageName("com.twnel.deeplinklibrary")
+                    // A fully-qualified Activity class name for intent generation (used to return to your app).
+                    .activityClassName("com.twnel.deeplinklibrary.MainActivity")
+                    //if you want to show a dialog alert when Twnel App is not installed 
+                    .showDialog(true)
+                    .dialogTitle("Install Twnel")
+                    .dialogMessage("You can chat with us via Twnel Messenger 24/7")
+                    .dialogNextButtonText("Next")
+                    .build()
+                    .navigate();	
+```
+#3 agrega android:exported="true" a tu activity (activityClassName) in the AndroidManifest.xml (Para poder regresar a tu aplicacíon).
 # Demo
 ![Alt text](https://github.com/Twnel/android-deep-link-library/blob/master/art/demo_deeplink.png)
 # Ejemplo
