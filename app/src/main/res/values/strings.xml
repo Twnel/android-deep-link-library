@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DeepLinkLibrary</string>
+    <string name="but_open_chat">Open Chat</string>
+    <string name="but_open_chat_without_dialog">Open Chat without Dialog</string>
+</resources>
