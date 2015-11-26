@@ -14,4 +14,8 @@ public class Constants {
     public static final String TWNEL_URL = "http://twnel.com";
     public static final String INSTALLATION_LINK = "http://twnl.co/";
     public static final String COMPANY_ID = "companyId";
+
+    public static final String TWNEL_PACKAGE = "com.twnel.android";
+    public static final String TWNEL_ACTIVITY = "com.twnel.android.ui.MainActivity";
+
 }

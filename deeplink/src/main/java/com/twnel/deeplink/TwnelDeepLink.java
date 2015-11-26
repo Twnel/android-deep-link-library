@@ -13,12 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import bolts.AppLink;
-import bolts.AppLinkNavigation;
-import bolts.Continuation;
-import bolts.Task;
-import bolts.WebViewAppLinkResolver;
-
 /**
  * Created by Yesid Lazaro on 11/25/15.
  */
@@ -77,49 +71,36 @@ public class TwnelDeepLink {
 
     public void navigate() {
         if (context!=null) {
-            new WebViewAppLinkResolver(context)
-                    .getAppLinkFromUrlInBackground(Uri.parse(Constants.TWNEL_URL))
-                    .continueWith(
-                            new Continuation<AppLink, AppLinkNavigation.NavigationResult>() {
-                                @Override
-                                public AppLinkNavigation.NavigationResult then(
-                                        Task<AppLink> task) {
-                                    AppLink link = task.getResult();
-                                    Intent intent = new Intent();
-                                    AppLink.Target target = link.getTargets().get(0);
-                                    intent.setClassName(target.getPackageName(), target.getClassName());
-                                    ResolveInfo resolveInfo = context.getPackageManager()
-                                            .resolveActivity(intent,
-                                                    PackageManager.MATCH_DEFAULT_ONLY);
-                                    //Twnel App installed
-                                    if (resolveInfo != null) {
-                                        Bundle extras = new Bundle();
-                                        //company Id, package name and activity class name
-                                        extras.putString(Constants.APP_LINK_JID, companyId);
-                                        extras.putString(Constants.APP_PACKAGE_NAME, appPackageName);
-                                        extras.putString(Constants.APP_ACTIVITY_NAME, activityClassName);
+            Intent intent = new Intent();
+            intent.setClassName(Constants.TWNEL_PACKAGE, Constants.TWNEL_ACTIVITY);
+            ResolveInfo resolveInfo = context.getPackageManager()
+                    .resolveActivity(intent,
+                            PackageManager.MATCH_DEFAULT_ONLY);
+            //Twnel App installed
+            if (resolveInfo != null) {
+                Bundle extras = new Bundle();
+                //company Id, package name and activity class name
+                extras.putString(Constants.APP_LINK_JID, companyId);
+                extras.putString(Constants.APP_PACKAGE_NAME, appPackageName);
+                extras.putString(Constants.APP_ACTIVITY_NAME, activityClassName);
 
-                                        //Extras for detect in Twnel App if starting from App Link
-                                        intent.putExtra(Constants.AL_APPLINK_DATA, extras);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        context.startActivity(intent);
-                                        //Twnel App not installed(now we redirect to play store)
-                                    } else {
-                                        if (showDialog) {
-                                            if (TextUtils.isEmpty(dialogTitle) || TextUtils.isEmpty(dialogMessage) || TextUtils.isEmpty(dialogNextButtonText)) {
-                                                throw new IllegalArgumentException("please set title, subject, and button text  for the alert dialog");
-                                            } else {
-                                                showDialog(context, dialogTitle, dialogMessage, dialogNextButtonText, companyId);
-                                            }
-                                        } else {
-                                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.INSTALLATION_LINK + companyId));
-                                            context.startActivity(browserIntent);
-                                        }
-                                    }
-                                    return null;
-                                }
-                            }
-                    );
+                //Extras for detect in Twnel App if starting from App Link
+                intent.putExtra(Constants.AL_APPLINK_DATA, extras);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
+                //Twnel App not installed(now we redirect to play store)
+            } else {
+                if (showDialog) {
+                    if (TextUtils.isEmpty(dialogTitle) || TextUtils.isEmpty(dialogMessage) || TextUtils.isEmpty(dialogNextButtonText)) {
+                        throw new IllegalArgumentException("please set title, subject, and button text  for the alert dialog");
+                    } else {
+                        showDialog(context, dialogTitle, dialogMessage, dialogNextButtonText, companyId);
+                    }
+                } else {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.INSTALLATION_LINK + companyId));
+                    context.startActivity(browserIntent);
+                }
+            }
         }else {
             throw new IllegalArgumentException("set a valid activity for context argument");
         }
