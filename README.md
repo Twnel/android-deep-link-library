@@ -23,8 +23,10 @@ Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
                     //The company identifier inside Twnel
                     .companyId("twnelvipalerts")
                      //A fully-qualified package name for intent generation (used to return to your app)
+		     //this is a example replace it by your app package name
                     .appPackageName("com.twnel.deeplinklibrary")
                     // A fully-qualified Activity class name for intent generation (used to return to your app).
+		    //this is a example replace it by your app activity class name
                     .activityClassName("com.twnel.deeplinklibrary.MainActivity")
                     //if you want to show a dialog alert when Twnel App is not installed 
                     .showDialog(true)
@@ -34,7 +36,7 @@ Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
                     .build()
                     .navigate();	
 ```
-#3 agrega android:exported="true" a tu activity (activityClassName) in the AndroidManifest.xml (Para poder regresar a tu aplicacíon).
+#3 **agrega android:exported="true" a tu activity (activityClassName) en  AndroidManifest.xml (Para poder regresar a tu aplicacíon).**
 # Demo
 ![Alt text](https://github.com/Twnel/android-deep-link-library/blob/master/art/demo_deeplink.png)
 # Ejemplo
