@@ -1,9 +1,9 @@
-#Android Deep Link Library
+# Android Deep Link Library
 Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
 
-# minSdk 14
-
-#1 - Agrega la dependencia en build.gradle
+## minSdk 14
+# Installing
+### 1 - Agrega la dependencia en build.gradle
 
 ```groovy
  repositories {
@@ -16,7 +16,7 @@ Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
         compile 'com.github.Twnel:android-deep-link-library:1.1'
 	}
 ```
-#2 - Usa la clase TwnelDeepLink para realizar el enlace con Twnel Messenger
+### 2 - Usa la clase TwnelDeepLink para realizar el enlace con Twnel Messenger
 ```java
  new TwnelDeepLink.Builder()
                     .context(this)
@@ -36,10 +36,11 @@ Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
                     .build()
                     .navigate();	
 ```
-#3 **agrega android:exported="true" a tu activity (activityClassName) en  AndroidManifest.xml (Para poder regresar a tu aplicacíon).**
+## 3 **agrega android:exported="true" a tu activity (activityClassName) en  AndroidManifest.xml (Para poder regresar a tu aplicacíon).**
+
 # Demo
 ![Alt text](https://github.com/Twnel/android-deep-link-library/blob/master/art/demo_deeplink.png)
-# Ejemplo
+## Ejemplo
 ```java
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button butOpenChat;
@@ -82,3 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 }
 
+```
+## Versioning
+
+For the versions available, see the [tags on this repository](https://github.com/Twnel/android-deep-link-library/releases). 
+
+## Authors
+
+* **Yesid Lazaro** -@ingyesid 
+
+## License
+
+All rights reserved Twnel Inc 2017
