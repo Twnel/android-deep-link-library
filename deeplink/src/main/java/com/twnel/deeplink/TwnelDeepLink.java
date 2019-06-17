@@ -9,12 +9,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
- * Created by Yesid Lazaro on 11/25/15.
+ * Created by Yesid Lazaro
  */
 public class TwnelDeepLink {
     private Activity context;
@@ -37,40 +38,40 @@ public class TwnelDeepLink {
         setDialogNextButtonText(builder.dialogNextButtonText);
     }
 
-    public void setContext(Activity context) {
+    private void setContext(Activity context) {
         this.context = context;
     }
 
-    public void setCompanyId(String companyId) {
+    private void setCompanyId(String companyId) {
         this.companyId = companyId;
     }
 
-    public void setAppPackageName(String appPackageName) {
+    private void setAppPackageName(String appPackageName) {
         this.appPackageName = appPackageName;
     }
 
-    public void setActivityClassName(String activityClassName) {
+    private void setActivityClassName(String activityClassName) {
         this.activityClassName = activityClassName;
     }
 
-    public void setShowDialog(boolean showDialog) {
+    private void setShowDialog(boolean showDialog) {
         this.showDialog = showDialog;
     }
 
-    public void setDialogTitle(String dialogTitle) {
+    private void setDialogTitle(String dialogTitle) {
         this.dialogTitle = dialogTitle;
     }
 
-    public void setDialogMessage(String dialogMessage) {
+    private void setDialogMessage(String dialogMessage) {
         this.dialogMessage = dialogMessage;
     }
 
-    public void setDialogNextButtonText(String dialogNextButtonText) {
+    private void setDialogNextButtonText(String dialogNextButtonText) {
         this.dialogNextButtonText = dialogNextButtonText;
     }
 
     public void navigate() {
-        if (context!=null) {
+        if (context != null) {
             Intent intent = new Intent();
             intent.setClassName(Constants.TWNEL_PACKAGE, Constants.TWNEL_ACTIVITY);
             ResolveInfo resolveInfo = context.getPackageManager()
@@ -101,7 +102,7 @@ public class TwnelDeepLink {
                     context.startActivity(browserIntent);
                 }
             }
-        }else {
+        } else {
             throw new IllegalArgumentException("set a valid activity for context argument");
         }
     }
@@ -129,6 +130,7 @@ public class TwnelDeepLink {
         private String dialogTitle;
         private String dialogMessage;
         private String dialogNextButtonText;
+
         public Builder() {
         }
 
@@ -166,6 +168,7 @@ public class TwnelDeepLink {
             dialogMessage = val;
             return this;
         }
+
         public Builder dialogNextButtonText(@Nullable String val) {
             dialogNextButtonText = val;
             return this;
