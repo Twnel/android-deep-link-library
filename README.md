@@ -13,7 +13,7 @@ Conecta tu aplicación con Twnel Messenger de forma facil y rapida.
 ```
 ```groovy
  dependencies {
-        compile 'com.github.Twnel:android-deep-link-library:1.1'
+        compile 'com.github.Twnel:android-deep-link-library:1.1.1'
 	}
 ```
 ### 2 - Usa la clase TwnelDeepLink para realizar el enlace con Twnel Messenger
